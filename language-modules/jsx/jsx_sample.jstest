@@ -1,0 +1,18 @@
+function createElement(name, props, children) {
+	console.log(arguments);
+	return {name, props, children};
+}
+
+function render() {
+	const cities = ["Berlin", "Hamburg", "München"];
+
+	return (
+		<div>
+			<ul>
+				{cities.map(el => <li>{el}</li>)}
+			</ul>
+		</div>
+	)
+}
+
+render();

@@ -1,0 +1,52 @@
+function logger(target, key, descriptor) {
+  let fn = descriptor.value;
+  descriptor.value = function() {
+  	console.log("Enter ", key);
+  	fn.apply(this, arguments);
+  	console.log("Exit ", key);
+  };
+  return descriptor;
+}
+
+function decorator2(target, key, descriptor) {
+	return descriptor;
+}
+
+let memoized = new WeakMap();
+function memoize(target, name, descriptor) {
+  let fn = descriptor.value;
+
+  descriptor.value = function() {
+    let table = memoizationFor(this);
+    if (name in table) { return table[name]; }
+    return table[name] = fn.call(this);
+  }
+  return descriptor;
+}
+
+function memoizationFor(obj) {
+  let table = memoized.get(obj);
+  if (!table) { table = Object.create(null); memoized.set(obj, table); }
+  return table;
+}
+
+console.log("logger", logger);
+
+class Test {
+	@logger
+	methodA() {
+		console.log("methodA");
+	}
+
+  @memoize
+	memoized() {
+		console.log("calculate memoized");
+		return 3;
+	}
+}
+
+const t = new Test();
+console.log(t.memoized());
+console.log(t.memoized());
+t.methodA();
+t.methodA();

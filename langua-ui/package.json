@@ -1,0 +1,30 @@
+{
+  "name": "Langua-UI",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "webpack": "webpack",
+    "start": "webpack-dev-server --hot --inline"
+  },
+  "author": "Philipp Otto",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.1.21",
+    "babel-loader": "^6.1.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "copy-webpack-plugin": "^0.2.0",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "antd": "^3.0.1",
+    "codemirror": "^5.32.0",
+    "lodash": "^4.17.4",
+    "prettier": "git://github.com/prettier/prettier.git#1.7.4",
+    "react": "^0.14.2",
+    "react-codemirror2": "^3.0.7",
+    "react-dom": "^0.14.2"
+  }
+}

@@ -1,0 +1,19 @@
+Jsx <: ES6 {
+  PrimaryExpression += Element -- jsxExpression
+
+  Element = "<" TagName Attributes ">" Content "<" "/" TagName ">" -- withContent
+  		  | "<" TagName Attributes "/" ">" -- withoutContent
+  
+  TagName = identifier
+  Attributes = Attribute*
+  Attribute = identifier ("=" AttributeValue)?
+  AttributeValue = JsxJSExpression | literal
+  JsxJSExpression = "{" ExpressionStatement "}"
+
+  Content = ~"<" ~"{" Text -- text
+  		  | ContentElement* -- elements
+  
+  ContentElement = Element | JsxJSExpression
+  Text = StringCharacter* // stringLiteral // doubleStringCharacter* would be better
+  StringCharacter = ~"<" doubleStringCharacter
+}

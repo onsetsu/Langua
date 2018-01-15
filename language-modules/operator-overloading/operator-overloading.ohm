@@ -1,0 +1,3 @@
+Pipeline <: ES6 {
+	PrimaryExpression += "'OperatorOverloader'" -- operatorOverloadingInitializer
+}

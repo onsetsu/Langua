@@ -1,0 +1,6 @@
+ForeignTest {
+	TopLevel = Root
+	Root = Hello SqlParam.Foreign You
+	Hello = "Hello"
+	You = "You"
+}

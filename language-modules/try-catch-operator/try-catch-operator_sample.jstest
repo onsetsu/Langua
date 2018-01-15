@@ -1,0 +1,21 @@
+let called = 0;
+function fallback() {
+	called++;
+	return true;
+}
+
+function failer() {
+	throw new Error("fail");
+}
+
+const result = failer() ~> fallback();
+
+if (!(called === 1 && result)) {
+	throw new Error("didn't work 1");
+}
+
+failer() ~> failer() ~> fallback();
+
+if (!(called === 2)) {
+	throw new Error("didn't work 2");
+}

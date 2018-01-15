@@ -1,0 +1,8 @@
+const sql = function(query) {
+	console.log(query);
+}
+
+const table = "aTableName";
+const result = sql {
+	select * from table
+};

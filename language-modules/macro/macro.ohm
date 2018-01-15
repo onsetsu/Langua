@@ -1,0 +1,6 @@
+Macro <: ES6 {
+	Declaration += MacroDeclaration
+	MacroDeclaration
+    	= "macro" FunctionDeclarationWithoutKeyword
+    CallExpression += identifier "!" Arguments  -- macroInvocation
+}

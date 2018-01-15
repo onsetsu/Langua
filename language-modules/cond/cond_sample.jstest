@@ -1,0 +1,8 @@
+const a = {
+	b: {
+		c: 3
+	}
+};
+
+console.log(a?.b?.c);
+console.log(a?.d?.c);

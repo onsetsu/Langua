@@ -1,0 +1,4 @@
+FlatMapOperator <: ES6 {
+    binop += op
+    op = "|>>" ~binopPart
+}

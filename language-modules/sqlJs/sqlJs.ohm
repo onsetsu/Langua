@@ -1,0 +1,5 @@
+SqlJs <: ES6 {
+  PrimaryExpression += sql "{" Query "}" -- sqlExpression
+  Query = SqlParam.Entry
+  sql = "sql" ~identifierPart
+}

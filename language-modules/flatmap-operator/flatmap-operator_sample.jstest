@@ -1,0 +1,2 @@
+Promise.resolve("resolved") |>> console.log;
+Promise.resolve("resolved") |>> console.log |>> console.log;

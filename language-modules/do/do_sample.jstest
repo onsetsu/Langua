@@ -1,0 +1,32 @@
+function f() {
+	return 3;
+}
+const _arguments = [];
+
+const a = do {
+	0;
+	1;
+	2;
+	1 + 2;
+	if (false) {
+		true
+	} else if (123) {
+		const _args = [];
+		console.log("else")
+		f();
+	} else {
+
+	}
+};
+
+console.log(a);
+
+// return <div>
+// 	{do if (...) {
+// 		<span>"Success"</span>
+// 	} else if (...) {
+// 		<span>"Failure"</span>
+// 	} else {
+// 		<span>"Unknown"</span>
+// 	}}
+// </div>;

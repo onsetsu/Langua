@@ -1,0 +1,4 @@
+Uncertainty <: ES6 {
+    PostfixExpression += super<PostfixExpression> "+-" super<PostfixExpression> -- uncertainty
+    PrimaryExpression += "'UncertaintyInitializer'" -- uncertaintyInitializer
+}

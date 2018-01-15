@@ -1,0 +1,43 @@
+const id = (el) => el;
+
+let fn, fn1, fn2, fn3, fn4;
+fn1 = fn2 = fn3 = fn4 = id;
+fn = () => {
+	console.log("fn was executed");
+	return 1337;
+}
+
+const thr = () => {throw new Error("bla")};
+const nthr = () => "success";
+const log = (el) => {
+	console.log(el);
+	return el;
+}
+const add = a => b => a + b;
+
+function test() {
+	// var a = 3 !== 5; // && 8;
+	debugger;
+	var a = true
+		? 3 |> fn1 |> fn2
+		: 4 |> fn3 |> fn4;
+
+	var b = fn() ?? 3;
+
+	var c = thr() ~> "recovered";
+	var d = nthr() ~> "recovered";
+
+	console.log(a);
+	console.log(b);
+	console.log(c);
+	console.log(d);
+
+	const foo = 3
+		|>  Promise.resolve
+		>>= log
+		>>= add(3)
+		>>= plus(4)
+	;
+}
+
+test();

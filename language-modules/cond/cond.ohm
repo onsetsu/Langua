@@ -1,0 +1,8 @@
+Cond <: ES6 {
+    MemberExpression += MemberExpression op identifierName -- condAccess
+    				  | MemberExpression "?[" Expression<withIn> "]"  -- arrayRefExpCond
+
+    CallExpression += CallExpression op identifierName -- condAccess
+  	PrimaryExpression += "'CondAccessInitializer'" -- condAccessInitializer
+  	op = "?."
+}

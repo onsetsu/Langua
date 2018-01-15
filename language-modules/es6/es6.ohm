@@ -1,0 +1,49 @@
+ES6 <: ES5 {
+  ClassDeclaration
+    = "class" identifier "{" ClassBody "}"
+
+  ClassBody
+    = ClassMember*
+
+  ClassMember
+    = FunctionDeclarationWithoutKeyword
+    | PropertyAssignment
+
+  Declaration += ClassDeclaration
+  
+  AssignmentExpression<guardIn> +=
+    ArrowFunction<guardIn>
+
+  varLetConst = var | let | const
+
+  VariableStatement += varLetConst VariableDeclarationList<withIn> #sc -- constDefault
+                      | varLetConst "{" NonemptyListOf<identifier, ","> "}" Initialiser<withIn> #sc -- shorthand
+  
+  async = "async" ~identifierPart
+  await = "await" ~identifierPart
+
+  PrimaryExpression += await Expression<withIn> -- await
+
+  FunctionDeclaration += async FunctionDeclaration -- async
+  FunctionExpression += async FunctionExpression -- async
+
+  // Why is ~":" necessary when the new rule should be tried last?
+  PropertyAssignment += PropertyName ~":" -- shorthand
+
+  assignmentOperator += "||=" -- logicalOrAssignment
+
+  ArrowFunction<guardIn> = ArrowParameters<guardIn> #(spacesNoNL "=>") ConciseBody<guardIn>
+
+  ConciseBody<guardIn> = ~"{" AssignmentExpression<guardIn>  -- noBraces
+                       | "{" FunctionBody "}"                -- withBraces
+
+  ArrowParameters<guardIn> = BindingIdentifier<guardIn>  -- unparenthesized
+                           | CoverParenthesizedExpressionAndArrowParameterList<guardIn>
+
+  BindingIdentifier<guardIn> = identifier  // TODO: Implement this properly.
+
+  CoverParenthesizedExpressionAndArrowParameterList<guardIn>
+    = "(" Expression<guardIn> ")"  -- expression
+    | "(" ")"                      -- parens
+    | "(" FormalParameterList ")"  -- params
+}

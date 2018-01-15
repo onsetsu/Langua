@@ -1,0 +1,6 @@
+SqlParam <: Sql {
+	ident += "$" "{" Expression "}" -- jsExp
+	number += "$" "{" Expression "}" -- jsExp
+	Entry = PrepareableSqlDataStatement
+	Expression = ForeignExpression.ExpressionStatement
+}

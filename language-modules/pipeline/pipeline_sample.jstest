@@ -1,0 +1,13 @@
+function f(el) {
+	return el;
+}
+
+function g(el) {
+	return el * 2;
+}
+
+result = 2 |> f |> g;
+
+if (result !== 4) {
+	throw new Exception("didn't work");
+}

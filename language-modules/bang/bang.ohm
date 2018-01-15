@@ -1,0 +1,5 @@
+Bang <: ES6 {
+  MemberExpression += MemberExpression "!." identifierName -- propRefExpCondBang
+  // SourceElement += super<SourceElement> bRule -- blabliblu
+  CallExpression += CallExpression "!." identifierName -- propRefExpCondBang
+}

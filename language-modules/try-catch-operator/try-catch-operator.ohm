@@ -1,0 +1,4 @@
+TryCatchOperator <: ES6 {
+    binop += op
+    op = "~>"
+}

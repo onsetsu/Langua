@@ -1,0 +1,10 @@
+Array.prototype[Symbol.operators["+"]] = function(right) {
+	return this.concat(right);
+}
+
+Array.prototype[Symbol.operators["-"]] = function(right) {
+	return this.filter(_ => right.indexOf(_) === -1);
+}
+
+console.log([1, 2] + [3, 4]);
+console.log([1, 2] - [2, 3]);

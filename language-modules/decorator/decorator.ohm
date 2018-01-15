@@ -1,0 +1,7 @@
+Decorator <: ES6 {
+    ClassMember
+	    += DecoratedClassMember
+
+	DecoratedClassMember = Decorator FunctionDeclarationWithoutKeyword
+	Decorator = "@" identifier
+}

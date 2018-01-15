@@ -1,0 +1,8 @@
+Unit <: ES6 {
+	numericLiteral += super<numericLiteral> space* unit -- unit
+	unit = unitSymbol ("/" unit)*
+    unitSymbol = u<"miles"> | u<"mile"> | u<"cm"> | u<"mi"> | u<"mm"> | u<"m"> | u<"km"> | u<"l"> | u< "%" >| u<"h"> | u<"$">
+    u<expr> = expr ~identifierPart
+
+    PrimaryExpression += "'UnitInitializer'" -- unitInitializer
+}

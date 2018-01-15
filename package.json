@@ -1,0 +1,21 @@
+{
+  "name": "Langua",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "browserify -t [ stringify --extensions [.ohm .jstest] ] index.js -o bundle.js",
+    "export-to-langua-ui": "yarn bundle && mv bundle.js langua-ui/html/langua-bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^14.5.0",
+    "colors": "^1.1.2",
+    "js-quantities": "^1.6.6",
+    "maybes": "^0.2.3",
+    "ohm-js": "git://github.com/philippotto/ohm.git#super",
+    "ramda": "^0.24.1",
+    "stringify": "^5.2.0"
+  }
+}

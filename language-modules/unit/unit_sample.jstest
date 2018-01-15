@@ -1,0 +1,2 @@
+console.log(5000km + 500m);
+console.log(7l/100km);

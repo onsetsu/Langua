@@ -1,0 +1,117 @@
+// macro max(a, b) {
+//   a > b ? a : b
+// }
+
+// max!(max!(a, b), max!(c, d));
+
+macro crossProductMacro(C, A, B) {
+  C[0] = A[1]*B[2] - A[2]*B[1];
+  C[1] = A[2]*B[0] - A[0]*B[2];
+  C[2] = A[0]*B[1] - A[1]*B[0];
+}
+
+function crossProduct(A, B) {
+  return [A[1]*B[2] - A[2]*B[1],
+    A[2]*B[0] - A[0]*B[2],
+    A[0]*B[1] - A[1]*B[0]];
+}
+
+macro trilinearize(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2) {
+  output =
+    p000 * (1 - d0) * (1 - d1) * (1 - d2) +
+    p100 * d0 * (1 - d1) * (1 - d2) +
+    p010 * (1 - d0) * d1 * (1 - d2) +
+    p110 * d0 * d1 * (1 - d2) +
+    p001 * (1 - d0) * (1 - d1) * d2 +
+    p101 * d0 * (1 - d1) * d2 +
+    p011 * (1 - d0) * d1 * d2 +
+    p111 * d0 * d1 * d2;
+}
+
+function trilinearize(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2) {
+  return
+    p000 * (1 - d0) * (1 - d1) * (1 - d2) +
+    p100 * d0 * (1 - d1) * (1 - d2) +
+    p010 * (1 - d0) * d1 * (1 - d2) +
+    p110 * d0 * d1 * (1 - d2) +
+    p001 * (1 - d0) * (1 - d1) * d2 +
+    p101 * d0 * (1 - d1) * d2 +
+    p011 * (1 - d0) * d1 * d2 +
+    p111 * d0 * d1 * d2;
+}
+
+function halfInlined(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2) {
+  trilinearize!(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2);
+}
+
+function indirection(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2) {
+  if (Math.random() + 1 > 1)
+    trilinearize(output, p000, p100, p010, p110, p001, p101, p011, p111, d0, d1, d2);
+}
+
+let result, counter;
+
+
+const times = 10000;
+function test1() {
+  counter = times;
+  console.time("Inlined");
+  while (counter-- > 0) {
+    trilinearize!(result, Math.random(), counter, counter, counter, counter, counter, counter, counter, counter, counter, counter);
+  }
+  console.timeEnd("Inlined");
+}
+
+function test2() {
+  counter = times;
+  console.time("NotInlined");
+  while (counter-- > 0) {
+    result = trilinearize(result, Math.random(), counter, counter, counter, counter, counter, counter, counter, counter, counter, counter);
+  }
+  console.timeEnd("NotInlined");
+}
+
+function test2() {
+  counter = times;
+  console.time("HalfInlined");
+  while (counter-- > 0) {
+    result = halfInlined(result, Math.random(), counter, counter, counter, counter, counter, counter, counter, counter, counter, counter);
+  }
+  console.timeEnd("HalfInlined");
+}
+
+function test3() {
+  counter = times;
+  console.time("indirection");
+  while (counter-- > 0) {
+    result = indirection(result, Math.random(), counter, counter, counter, counter, counter, counter, counter, counter, counter, counter);
+  }
+  console.timeEnd("indirection");
+}
+
+function test4() {
+  counter = times;
+  console.time("crossMacro");
+  while (counter-- > 0) {
+    const A = [Math.random(), 1, 2];
+    const B = [Math.random(), 1, 2];
+    const C = [0, 0, 0];
+    crossProductMacro!(C, A, B);
+  }
+  console.timeEnd("crossMacro");
+}
+
+function test5() {
+  counter = times;
+  console.time("crossFunction");
+  while (counter-- > 0) {
+    const A = [Math.random(), 1, 2];
+    const B = [Math.random(), 1, 2];
+    const C = crossProduct(A, B);
+  }
+  console.timeEnd("crossFunction");
+}
+
+// test1();
+test4();
+test5();

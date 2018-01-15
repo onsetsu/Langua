@@ -1,0 +1,4 @@
+Pipeline <: ES6 {
+    binop += op
+    op = "|>" ~binopPart
+}

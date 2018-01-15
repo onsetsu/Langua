@@ -1,0 +1,6 @@
+Layer <: ES6 {
+    LayerDeclaration
+      = "layer" identifier "{" ("extends" ClassDeclaration)* "}"
+
+    Declaration += LayerDeclaration
+}

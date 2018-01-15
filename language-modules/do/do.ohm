@@ -1,0 +1,14 @@
+// Allow writing code, such as:
+// const value = do if (bool) {
+// 	doSomething();
+// 	"aValue";
+// } else {
+// 	3
+// }
+
+Do <: ES6 {
+	PrimaryExpression += DoExpression
+	DoExpression = Do Block -- block
+				 | Do StatementList -- stmts
+	Do = "do"
+}

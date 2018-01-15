@@ -1,0 +1,16 @@
+Flow <: ES6 {
+    Expression<guardIn> += Expression<guardIn> ":" Type -- typed
+    Type = TypeImpl
+
+    TypeImpl = TypeImpl "<" NonemptyListOf<TypeImpl, ","> ">" -- generic
+             | TypeImpl "?"?            -- optional
+             | ObjectLiteral            -- structure
+             | identifier "|" Type      -- or
+             | identifier "&" Type      -- and
+             | identifier               -- id
+
+    FormalParameter += identifier ":" Type -- typed
+
+    Declaration += TypeDeclaration
+    TypeDeclaration = "type" identifier "=" Type
+}
